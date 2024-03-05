@@ -9,7 +9,7 @@ const app = express();
 
 // Home route
 app.get("/", (req, res) => {
-  res.send((201).json({ message: "🚀🚀🚀🚀🚀" }));
+    res.status(201).json({ message: "🚀🚀🚀🚀🚀" });
 });
 
 //Import PORT from environment variable
