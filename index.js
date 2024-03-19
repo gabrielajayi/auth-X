@@ -1,21 +1,20 @@
-//Import the environment variable
 require("dotenv").config();
-
-//Import express module
 const express = require("express");
-
-// Create an instance of the express app
 const app = express();
-
-// Home route
 app.get("/", (req, res) => {
     res.status(201).json({ message: "🚀🚀🚀🚀🚀" });
 });
-
-//Import PORT from environment variable
-const PORT = process.env.PORT;
-
-//listen to the server
-app.listen(PORT, () => {
-  console.log(`Server is live and running on PORT ${PORT}`);
-});
+async function startServer(){
+  try { 
+    await new Promise((resolve, reject) => {
+      const port = process.env.PORT;
+      app.listen(port, () => {
+        console.log(`Server is live and running on ${port}`);
+        resolve();
+      }).on('error', reject);
+      });
+  } catch (error){
+    console.error('Error starting server', error);
+  }
+}
+startServer();
